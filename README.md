@@ -1,6 +1,17 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+[modes](https://vitejs.dev/guide/env-and-mode.html#modes)
+```
+vite build --mode staging
+
+# .env.staging
+NODE_ENV=production
+VITE_APP_TITLE=My App (staging)
+```
+
+###### refer
+
++ [script setup](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup)
 
 ## Recommended IDE Setup
 

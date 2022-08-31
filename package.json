@@ -7,6 +7,9 @@
     "start": "vite --port 8888",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "builddev": "vue-tsc --noEmit && vite build --mode modedev",
+    "buildtest": "vue-tsc --noEmit && vite build --mode modetest",
+    "buildprod": "vue-tsc --noEmit && vite build --mode modeprod",
     "preview": "vite preview"
   },
   "dependencies": {

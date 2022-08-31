@@ -2,6 +2,20 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from './components/HelloWorld.vue';
+
+
+let result = import.meta.env;
+console.log('result', result);
+console.log('import.meta\u200b.env');
+// {BASE_URL: '/', MODE: 'development', DEV: true,  PROD: false, SSR: false}
+// {BASE_URL: '/', MODE: 'production',  DEV: false, PROD: true}
+
+/* 
+mode
+
+Env Loading Priorities
+An env file for a specific mode (e.g. .env.production) will take higher priority than a generic one (e.g. .env).
+*/
 </script>
 
 <template>
