@@ -1,47 +1,63 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue';
+<script lang="ts" setup>
+import {onMounted} from 'vue'
+import * as THREE from 'three'
+// console.log(THREE.REVISION)
 
 
-let result = import.meta.env;
-console.log('result', result);
-console.log('import.meta\u200b.env');
-// {BASE_URL: '/', MODE: 'development', DEV: true,  PROD: false, SSR: false}
-// {BASE_URL: '/', MODE: 'production',  DEV: false, PROD: true}
+let runTHREE=()=>{
+  /* 
+  要素：
+  camera++++++++
+  */
+  let aspect = (window.innerWidth * .8)/ (window.innerHeight * .4)
+  const camera=new THREE.PerspectiveCamera(70,aspect,1e-2,1e2)
+  camera.position.z=1
+  const scene=new THREE.Scene()
+  let size=.4
+  const geometry=new THREE.BoxGeometry(size,size,size)
+  const material=new THREE.MeshNormalMaterial()
+  const mesh=new THREE.Mesh(geometry,material)
+  scene.add(mesh)
 
-/* 
-mode
 
-Env Loading Priorities
-An env file for a specific mode (e.g. .env.production) will take higher priority than a generic one (e.g. .env).
-*/
+  const renderer=new THREE.WebGLRenderer({
+    antialias:true,
+  })
+  renderer.setSize(window.innerWidth*.8,window.innerHeight*.4)
+  renderer.setAnimationLoop(animation)
+
+  elTHREE.appendChild(renderer.domElement)
+
+
+
+  function animation(time:number){
+    mesh.rotation.x=time/2000
+    mesh.rotation.y=time/1000
+    renderer.render(scene,camera)
+  }
+}
+
+
+onMounted(()=>{
+  runTHREE()
+})
+
 </script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+<div class="App">
+  <h1>Hello Cube!</h1>
+  <div id="elTHREE">
+    <!-- <canvas id="canvasMain"></canvas> -->
   </div>
-  <HelloWorld msg="http://127.0.0.1:8888/" />
+</div>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+Vite does provide built-in support for .scss, .sass, .less, .styl and .stylus files. There is no need to install Vite-specific plugins for them, but the corresponding pre-processor itself must be installed:
+# .scss and .sass
+npm add -D sass
+<style lang="scss">
+.App{
+  border: 1px solid dimgray;
 }
 </style>
